@@ -4,7 +4,8 @@ FROM php:${VERSION}-cli-alpine
 
 WORKDIR /app
 
-RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
+RUN apk add --update linux-headers \
+  && apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
   && apk --no-cache add icu-dev \
   && pecl install xdebug \
   && apk del pcre-dev ${PHPIZE_DEPS}
